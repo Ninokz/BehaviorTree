@@ -8,7 +8,6 @@ int main()
 				->Sequence("2")
 					->DebugNode("hello")
 					->DebugNode("world")
-					->DebugNode("fucker")
 				->Back()
 			->End();
 	builder->treeTick();
