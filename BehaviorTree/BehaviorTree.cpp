@@ -392,10 +392,9 @@ namespace Nano {
 			return shared_from_this();
 		}
 
-		BehaviorTreeBuilder::Ptr BehaviorTreeBuilder::DebugNode(std::string uid)
+		BehaviorTreeBuilder::Ptr BehaviorTreeBuilder::Action(Action::Ptr actionPtr)
 		{
-			DebugNode::Ptr dbg = std::make_shared<Nano::BehaviorTree::DebugNode>(uid);
-			addBehavior(dbg);
+			addBehavior(actionPtr);
 			return shared_from_this();
 		}
 

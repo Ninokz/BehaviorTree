@@ -212,20 +212,6 @@ namespace Nano {
 			Behavior::Ptr m_root;
 		};
 
-		class DebugNode : public Nano::BehaviorTree::Action
-		{
-		public:
-			typedef std::shared_ptr<DebugNode> Ptr;
-		public:
-			DebugNode(std::string uid) : Action(uid) {}
-		protected:
-			Behavior::EStatus onUpdate() override
-			{
-				std::cout << "DebugNode::onUpdate" << m_uid << std::endl;
-				return Behavior::EStatus::Success;
-			}
-		};
-
 		class BehaviorTreeBuilder : public std::enable_shared_from_this<BehaviorTreeBuilder>
 		{
 		public:
@@ -247,7 +233,7 @@ namespace Nano {
 			BehaviorTreeBuilder::Ptr Monitor(std::string uid, Parallel::Policy successPolicy, Parallel::Policy failurePolicy);
 			BehaviorTreeBuilder::Ptr Inverter(std::string uid);
 			BehaviorTreeBuilder::Ptr Repeat(std::string uid, int limit);
-			BehaviorTreeBuilder::Ptr DebugNode(std::string uid);
+			BehaviorTreeBuilder::Ptr Action(Action::Ptr actionPtr);
 		private:
 			std::stack<Behavior::Ptr> m_nodeStack;
 			BehaviorTree::Ptr m_tree;
