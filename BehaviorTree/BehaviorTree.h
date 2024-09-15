@@ -195,6 +195,7 @@ namespace Nano {
 			Action() = delete;
 			Action(std::string uid);
 			virtual ~Action() = default;
+			virtual void addChild(Behavior::Ptr child) final;
 		};
 
 		class BehaviorTree {

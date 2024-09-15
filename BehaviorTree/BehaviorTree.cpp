@@ -273,6 +273,10 @@ namespace Nano {
 		{
 		}
 
+		void Action::addChild(Behavior::Ptr child)
+		{
+		}
+
 		Behavior::EStatus Repeat::onUpdate()
 		{
 			while (m_limit < 0 || m_conunter < m_limit)
