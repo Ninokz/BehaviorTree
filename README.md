@@ -2,7 +2,7 @@
 
 ## Intro.
 
-Nano::BehaviorTree 是一个用C++实现的轻量级行为树库，供学习。
+BehaviorTree 是一个用C++实现的轻量级行为树库，供学习。
 
 ## Main Features.
 
