@@ -3,10 +3,10 @@
 namespace Nano {
 	namespace BehaviorTree {
 		// 构造函数，初始化状态为无效
-		Behavior::Behavior(std::string uid, Behavior::EType type) :
+		Behavior::Behavior(std::string uid, Behavior::EMetaType type) :
 			m_uid(uid),
 			m_status(EStatus::Invalid),
-			m_type(type)	
+			m_metaType(type)	
 		{}
 
 		// 是否运行结束
@@ -34,9 +34,14 @@ namespace Nano {
 			return m_uid;
 		}
 
-		Behavior::EType Behavior::getType() const
+		Behavior::EMetaType Behavior::getType() const
 		{
-			return m_type;
+			return m_metaType;
+		}
+
+		Behavior::EStatus Behavior::getStatus() const
+		{
+			return m_status;
 		}
 
 		// 节点运行，会返回本次调用的结果，为父节点接下来的运行提供依据
@@ -66,7 +71,7 @@ namespace Nano {
 		void Behavior::addChild(Behavior::Ptr child) {}
 
 		Composite::Composite(std::string uid) :
-			Behavior(uid,Behavior::EType::Composite),
+			Behavior(uid,Behavior::EMetaType::Composite),
 			m_children(std::make_shared<BehaviorPtrDoubleList>())
 		{
 		}
@@ -232,7 +237,7 @@ namespace Nano {
 		}
 
 		Decorator::Decorator(std::string uid) :
-			Behavior(uid,Behavior::EType::Decorator),
+			Behavior(uid,Behavior::EMetaType::Decorator),
 			m_child(nullptr)
 		{
 		}
@@ -269,7 +274,7 @@ namespace Nano {
 		}
 
 		Action::Action(std::string uid) :
-			Behavior(uid,Behavior::EType::Action)
+			Behavior(uid,Behavior::EMetaType::Action)
 		{
 		}
 
@@ -337,7 +342,7 @@ namespace Nano {
 				m_tree->setRoot(behavior);
 			}
 			//只有组合节点和修饰节点需要进构建堆
-			if (behavior->getType() == Behavior::EType::Composite || behavior->getType() == Behavior::EType::Decorator)
+			if (behavior->getType() == Behavior::EMetaType::Composite || behavior->getType() == Behavior::EMetaType::Decorator)
 				m_nodeStack.push(behavior);
 		}
 

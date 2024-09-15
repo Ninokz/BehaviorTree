@@ -17,17 +17,18 @@ namespace Nano {
 				Success = 1,    // 成功
 				Running = 2,    // 运行中
 				Aborted = 3,    // 中断
-				Invalid = 4    // 无效
+				Invalid = 4		// 无效
 			};
-			enum class EType {
-				Composite = 0,
-				Decorator = 1,
-				Action = 2
+			enum class EMetaType {
+				Composite = 0b00,		// 组合节点 (2-bit: 00)
+				Decorator = 0b01,		// 修饰节点 (2-bit: 01)
+				Action =	0b10		// 动作节点 (2-bit: 10)
+										// 预留: 0b11 可以用于未来扩展
 			};
 			typedef std::shared_ptr<Behavior> Ptr;
 		public:
 			Behavior() = delete;
-			Behavior(std::string uid, Behavior::EType type);
+			Behavior(std::string uid, Behavior::EMetaType type);
 			virtual ~Behavior() = default;
 			bool isTerminated() const;
 			bool isSuccess() const;
@@ -35,7 +36,9 @@ namespace Nano {
 			bool isRunning() const;
 			std::string getUID() const;
 
-			EType getType() const;
+			EMetaType getType() const;
+			EStatus getStatus() const;
+
 			EStatus tick();
 			void reset();
 			void abort();
@@ -48,9 +51,9 @@ namespace Nano {
 			// 当运行结束时才会执行一次的函数，类似FSM的OnExit
 			virtual void onTerminate() {};
 		protected:
-			EStatus m_status;  // 运行状态
-			std::string m_uid;   // 节点的唯一标识
-			EType m_type;
+			EStatus m_status;		// 运行状态
+			std::string m_uid;		// 节点的唯一标识
+			EMetaType m_metaType;	// 节点的元类型
 		};
 
 		class Composite : public Behavior {
