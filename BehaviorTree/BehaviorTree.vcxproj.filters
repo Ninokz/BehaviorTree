@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bht.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="BehaviorTree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="bht.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
