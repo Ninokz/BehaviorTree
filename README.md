@@ -1,8 +1,8 @@
-# BehaviorTree - 轻量级行为树库
+# BehaviorTree
 
 ## Intro.
 
-BehaviorTree 是一个用C++实现的轻量级行为树库，供学习。
+BehaviorTree 是一个用C++实现的轻量级行为树基础的库(就写了基本节点，看后续再更吧)
 
 ## Main Features.
 
